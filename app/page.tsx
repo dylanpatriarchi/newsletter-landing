@@ -61,7 +61,7 @@ export default function Home() {
 
       const data = await response.json();
 
-      if (data.success === true) {
+      if (data.success === true || data.success === "true") {
         setMessage({ 
           type: 'success', 
           text: 'Perfetto! Controlla la tua email per confermare l\'iscrizione.' 
