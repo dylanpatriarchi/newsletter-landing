@@ -1,54 +1,54 @@
 # Rayo Consulting - Newsletter Landing Page
 
-Landing page per l'iscrizione alla newsletter di Rayo Consulting, specializzata in AI, risorse e offerte esclusive.
+Landing page for Rayo Consulting newsletter subscription, featuring AI news, resources, and exclusive offers.
 
-## 🚀 Caratteristiche
+## 🚀 Features
 
-- **Design Moderno**: Ispirato al sito principale di Rayo Consulting con gradiente arancione
-- **Font Elegante**: Utilizzo di Instrument Serif per un tocco tipografico professionale
-- **Animazioni GSAP**: Animazioni fluide e coinvolgenti per un'esperienza utente premium
-- **GDPR Compliant**: Completamente conforme alle normative sulla privacy europea
-- **Responsive**: Ottimizzato per tutti i dispositivi (desktop, tablet, mobile)
-- **Form Sicuro**: Validazione completa e gestione errori
+- **Modern Design**: Inspired by Rayo Consulting's main site with orange gradient
+- **Elegant Typography**: Instrument Serif font for a professional typographic touch
+- **GSAP Animations**: Smooth and engaging animations for a premium user experience
+- **GDPR Compliant**: Fully compliant with European privacy regulations
+- **Responsive**: Optimized for all devices (desktop, tablet, mobile)
+- **Secure Form**: Complete validation and error handling
 
-## 🛠️ Tecnologie
+## 🛠️ Technologies
 
-- **Next.js 14** - Framework React con App Router
+- **Next.js 14** - React framework with App Router
 - **TypeScript** - Type safety
-- **Tailwind CSS** - Styling utility-first
-- **GSAP** - Animazioni professionali
+- **Tailwind CSS** - Utility-first styling
+- **GSAP** - Professional animations
 - **Google Fonts** - Instrument Serif
 
-## 📦 Installazione
+## 📦 Installation
 
 ```bash
-# Installa le dipendenze
+# Install dependencies
 npm install
 
-# Avvia il server di sviluppo
+# Start development server
 npm run dev
 
-# Build per produzione
+# Build for production
 npm run build
 
-# Avvia in produzione
+# Start in production
 npm start
 ```
 
-Il sito sarà disponibile su [http://localhost:3000](http://localhost:3000)
+The site will be available at [http://localhost:3000](http://localhost:3000)
 
-## 🌐 Struttura
+## 🌐 Project Structure
 
 ```
 newsletter-landing/
 ├── app/
-│   ├── layout.tsx          # Layout principale con font
-│   ├── page.tsx            # Homepage con form newsletter
-│   ├── globals.css         # Stili globali
+│   ├── layout.tsx          # Main layout with fonts
+│   ├── page.tsx            # Homepage with newsletter form
+│   ├── globals.css         # Global styles
 │   ├── privacy/
-│   │   └── page.tsx        # Privacy Policy completa
+│   │   └── page.tsx        # Complete Privacy Policy
 │   └── terms/
-│       └── page.tsx        # Termini di Servizio
+│       └── page.tsx        # Terms of Service
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.ts
@@ -57,7 +57,7 @@ newsletter-landing/
 
 ## 📧 API Endpoint
 
-Il form invia i dati all'endpoint:
+The form sends data to the endpoint:
 ```
 POST https://chat.rayo.consulting/webhook/2c009c72-f940-4ab1-a004-a8d289f73237
 ```
@@ -69,48 +69,48 @@ POST https://chat.rayo.consulting/webhook/2c009c72-f940-4ab1-a004-a8d289f73237
 }
 ```
 
-**Risposte:**
-- `{ "success": true }` - Nuova iscrizione confermata
-- `{ "success": false }` - Email già iscritta
+**Responses:**
+- `{ "success": true }` - New subscription confirmed
+- `{ "success": false }` - Email already subscribed
 
 ## 🔒 Privacy & GDPR
 
-- ✅ Consenso esplicito richiesto
-- ✅ Privacy Policy dettagliata
-- ✅ Termini di Servizio completi
-- ✅ Dati salvati in database sicuro
-- ✅ Diritti dell'utente chiaramente indicati
-- ✅ Possibilità di disiscrizione
+- ✅ Explicit consent required
+- ✅ Detailed Privacy Policy
+- ✅ Complete Terms of Service
+- ✅ Data stored in secure database
+- ✅ User rights clearly stated
+- ✅ Unsubscribe option available
 
-## 📱 Funzionalità
+## 📱 Functionality
 
-### Form Newsletter
-- Validazione email
-- Checkbox consenso privacy obbligatoria
-- Feedback immediato su successo/errore
-- Gestione iscrizioni duplicate
-- Loading state durante invio
+### Newsletter Form
+- Email validation
+- Mandatory privacy consent checkbox
+- Immediate success/error feedback
+- Duplicate subscription handling
+- Loading state during submission
 
-### Animazioni
-- Fade-in del titolo
-- Slide-up del sottotitolo
-- Scale-in del form
-- Hover effects sui bottoni
+### Animations
+- Title fade-in
+- Subtitle slide-up
+- Form scale-in
+- Button hover effects
 
 ### SEO
-- Meta tags ottimizzati
-- Titolo e descrizione per newsletter AI
-- Struttura semantica HTML5
+- Optimized meta tags
+- Title and description for AI newsletter
+- Semantic HTML5 structure
 
-## 👤 Informazioni
+## 👤 Information
 
-**Azienda:** Rayo Consulting  
-**Titolare:** Patriarchi Dylan  
-**P.IVA:** 03988190546  
+**Company:** Rayo Consulting  
+**Owner:** Patriarchi Dylan  
+**VAT:** 03988190546  
 **Email:** info@rayo.consulting  
 **Website:** https://rayo.consulting
 
-## 📄 Licenza
+## 📄 License
 
-© 2025 Rayo Consulting. Tutti i diritti riservati.
+© 2025 Rayo Consulting. All rights reserved.
 
