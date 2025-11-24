@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import Link from 'next/link';
+import Script from 'next/script';
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ export default function Home() {
   const [message, setMessage] = useState<{ type: 'success' | 'error' | 'info', text: string } | null>(null);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const mainRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
@@ -32,14 +34,41 @@ export default function Home() {
       return;
     }
 
+    // Validazione email frontend
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setMessage({ type: 'error', text: 'Inserisci un\'email valida.' });
+      return;
+    }
+
+    // Rate limiting frontend (max 1 richiesta ogni 5 secondi)
+    const lastSubmit = localStorage.getItem('lastNewsletterSubmit');
+    if (lastSubmit) {
+      const timeDiff = Date.now() - parseInt(lastSubmit);
+      if (timeDiff < 5000) {
+        setMessage({ type: 'error', text: 'Aspetta qualche secondo prima di riprovare.' });
+        return;
+      }
+    }
+
     setIsSubmitting(true);
     setMessage(null);
 
     try {
-      const response = await fetch('https://chat.rayo.consulting/webhook/subscribe', {
+      // Salva timestamp per rate limiting
+      localStorage.setItem('lastNewsletterSubmit', Date.now().toString());
+
+      const webhookUrl = process.env.NEXT_PUBLIC_WEBHOOK_URL;
+      
+      const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ 
+          email,
+          timestamp: Date.now(),
+          source: 'newsletter-landing',
+          'cf-turnstile-response': turnstileToken // Token Cloudflare (se presente)
+        }),
       });
 
       const data = await response.json();
@@ -59,7 +88,12 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#F9F9F9] selection:bg-[#FF4F37] selection:text-white">
+    <>
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        strategy="lazyOnload"
+      />
+      <main className="min-h-screen flex flex-col bg-[#F9F9F9] selection:bg-[#FF4F37] selection:text-white">
       
       {/* HERO SECTION */}
       <div ref={mainRef} className="relative w-full min-h-[85vh] flex flex-col justify-center px-6 md:px-12 overflow-hidden">
@@ -130,6 +164,16 @@ export default function Home() {
                   }`} />
                   {message.text}
                 </div>
+              )}
+
+              {/* Cloudflare Turnstile - invisibile, si attiva solo se sospetto */}
+              {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+                <div 
+                  className="cf-turnstile mt-4" 
+                  data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  data-theme="light"
+                  data-size="invisible"
+                />
               )}
             </form>
           </div>
@@ -218,5 +262,6 @@ export default function Home() {
         </div>
       )}
     </main>
+    </>
   );
 }
