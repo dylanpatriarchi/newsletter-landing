@@ -60,6 +60,10 @@ export default function Home() {
 
       const webhookUrl = process.env.NEXT_PUBLIC_WEBHOOK_URL;
       
+      if (!webhookUrl) {
+        throw new Error('Webhook URL non configurato');
+      }
+      
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
