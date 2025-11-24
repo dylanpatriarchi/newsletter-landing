@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Instrument_Serif } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({ 
   subsets: ["latin"],
   weight: ["400"],
   variable: '--font-instrument-serif',
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -20,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <body className={`${instrumentSerif.variable} antialiased`}>
+      <body className={`${instrumentSerif.variable} ${inter.variable} antialiased font-sans`}>
         {children}
       </body>
     </html>
