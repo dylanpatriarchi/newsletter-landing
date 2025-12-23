@@ -8,18 +8,33 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        'serif': ['var(--font-instrument-serif)', 'serif'],
-        'sans': ['var(--font-inter)', 'sans-serif'],
-      },
       colors: {
+        background: "#FFFFFF",
+        foreground: "#000000",
+        primary: "#3B82F6",
         rayo: {
-          DEFAULT: '#FF4F37', // Arancione principale
-          dark: '#E63E26',
-          light: '#FF7A66',
-          bg: '#F9F9F9',      // Sfondo chiaro sezioni
-          text: '#1A1A1A',    // Testo scuro principale
-          gray: '#666666',    // Testo secondario
+          blue: "#3B82F6",
+          dark: "#000000",
+          light: "#F5F5F7",
+        }
+      },
+      fontFamily: {
+        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+      },
+      backdropBlur: {
+        'xs': '2px',
+      },
+      backgroundImage: {
+        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+      },
+      animation: {
+        'float': 'float 6s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
         }
       }
     },

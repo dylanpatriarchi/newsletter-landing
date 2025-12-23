@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
-
-const instrumentSerif = Instrument_Serif({ 
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: '--font-instrument-serif',
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: '--font-inter',
-});
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "Newsletter Rayo Consulting - AI, Risorse e Sconti Speciali",
-  description: "Iscriviti alla newsletter di Rayo Consulting per ricevere news sull'AI, risorse esclusive e sconti speciali sui nostri servizi.",
+  title: "Rayo Consulting | Minimalism meets Organic High-Tech",
+  description: "Advanced AI Agency - Designing the future of code and biology.",
 };
 
 export default function RootLayout({
@@ -25,8 +14,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <body className={`${instrumentSerif.variable} ${inter.variable} antialiased font-sans`}>
-        {children}
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      </head>
+      <body className="antialiased bg-background text-foreground selection:bg-primary selection:text-white">
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
